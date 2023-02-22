@@ -1,12 +1,13 @@
 package handler
 
 import (
+	"HydrogenChain/model"
 	"database/sql"
 	"fmt"
 	"time"
 )
 
-func createBlock(data string, prevHash string, db *sql.DB) Block {
+func createBlock(data string, prevHash string, db *sql.DB) model.Block {
 	var index int
 	var timestamp int64
 	var hash string
@@ -16,7 +17,7 @@ func createBlock(data string, prevHash string, db *sql.DB) Block {
 		panic(err.Error())
 	}
 
-	block := Block{
+	block := model.Block{
 		Index:     index + 1,
 		Timestamp: time.Now().Unix(),
 		Data:      data,

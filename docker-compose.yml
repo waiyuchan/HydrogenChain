@@ -1,0 +1,41 @@
+version: "3"
+services:
+  node1:
+    build: .
+    container_name: node1
+    volumes:
+      - "./data/node1:/app/data"
+    environment:
+      - NODE_ADDR=:3001
+      - PEER_ADDRS=peer2:3002,peer3:3003
+    ports:
+      - "3001:3001"
+    networks:
+      - blockchain
+  node2:
+    build: .
+    container_name: node2
+    volumes:
+      - "./data/node2:/app/data"
+    environment:
+      - NODE_ADDR=:3002
+      - PEER_ADDRS=peer1:3001,peer3:3003
+    ports:
+      - "3002:3002"
+    networks:
+      - blockchain
+  node3:
+    build: .
+    container_name: node3
+    volumes:
+      - "./data/node3:/app/data"
+    environment:
+      - NODE_ADDR=:3003
+      - PEER_ADDRS=peer1:3001,peer2:3002
+    ports:
+      - "3003:3003"
+    networks:
+      - blockchain
+networks:
+  blockchain:
+    driver: bridge

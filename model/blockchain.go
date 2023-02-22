@@ -2,7 +2,10 @@ package model
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"time"
 )
 
 type BlockChain struct {
